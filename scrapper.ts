@@ -24,13 +24,13 @@ var Schema = mongoose.Schema;
 
 var tweetSchema = new Schema({}, { "strict": false });
 
-var Tweet = mongoose.model('Tweet', tweetSchema);
+var TweetS = mongoose.model('Tweet', tweetSchema);
 
 app.get('/scrapper', function (req, res) {
     var search = req.query.search;
     var stream = T.stream('statuses/filter', { track: search });
     stream.on('tweet', function (obj) {
-        var TwitterData = new Tweet(obj); 
+        var TwitterData = new TweetS(obj); 
         TwitterData.save(); 
         console.log(obj);
     });
